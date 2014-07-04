@@ -85,19 +85,19 @@ Game.Play.prototype = {
 	var x = this.pixelsToGrid(game.input.mousePointer.x);
 	var y = this.pixelsToGrid(game.input.mousePointer.y);
 
-	if (x >= A.grid.columns || y >= A.grid.rows) {
-	    return;
-	}
-
-	this.updateGrid();
-
-	if (A.grid.contentsOf(x, y)) {
-	    this.removeQueen(x, y);
+	if (x >= A.grid.columns) {
+	    A.queens = [];
 	}
 	else {
-	    this.addQueen(x, y);
-	}
+	    this.updateGrid();
 
+	    if (A.grid.contentsOf(x, y)) {
+		this.removeQueen(x, y);
+	    }
+	    else {
+		this.addQueen(x, y);
+	    }
+	}
 	this.updateGrid();
 	this.paint();
     },
@@ -106,6 +106,11 @@ Game.Play.prototype = {
 	if (A.queens.length < 8) {
 	    A.queens.push([x, y]);
 	}
+	
+	if (A.queens.length === 8) {
+	    this.endPlay();
+	}
+
 	return this;
     },
 
@@ -127,5 +132,9 @@ Game.Play.prototype = {
 	ret = Math.floor((num - 3) / 37);
 
 	return ret === -1 ? 0 : ret;
+    },
+
+    endPlay: function (num) {
+	game.state.start('End');
     },
 };
