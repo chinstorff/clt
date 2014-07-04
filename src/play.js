@@ -8,7 +8,6 @@ Game.Play.prototype = {
 	A.grid.addPossible('queen');
 	A.grid.addPossible('filled');
 
-	game.add.sprite(0, 0, 'background');
 	game.add.sprite(0, 0, 'grid');
 
 	A.pieces = game.add.group();
@@ -48,7 +47,7 @@ Game.Play.prototype = {
 	    }
 	}
 
-	for (j = 0; j < (8 - A.queens.length); j++) {
+	for (j = 0; j < 8 - A.queens.length; j++) {
 	    A.pieces.create(this.gridToPixels(8) + 1, this.gridToPixels(j) + 1, 'queen');
 	}
     },
@@ -90,7 +89,7 @@ Game.Play.prototype = {
 	if (x >= A.grid.columns) {
 	    A.queens = [];
 	}
-	else {
+	else if (y < A.grid.rows) {
 	    this.updateGrid();
 
 	    if (A.grid.contentsOf(x, y)) {
