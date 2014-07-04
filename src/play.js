@@ -13,8 +13,6 @@ Game.Play.prototype = {
 
 	A.pieces = game.add.group();
 
-	A.queens.push([1, 1]);
-	this.updateGrid();
 	this.paint();
     },
 
@@ -61,7 +59,22 @@ Game.Play.prototype = {
 	}
 
 	// diagonally
-
+	i = x, j = y;
+	while (i >= 0 && j >= 0) {
+	    A.grid.addPiece(i--, j--, 'filled');
+	}
+	i = x, j = y;
+	while (i >= 0 && j < A.grid.rows) {
+	    A.grid.addPiece(i--, j++, 'filled');
+	}
+	i = x, j = y;
+	while (i < A.grid.columns && j >= 0) {
+	    A.grid.addPiece(i++, j--, 'filled');
+	}
+	i = x, j = y;
+	while (i < A.grid.columns && j < A.grid.rows) {
+	    A.grid.addPiece(i++, j++, 'filled');
+	}
     },
 
     click: function () {
@@ -70,7 +83,7 @@ Game.Play.prototype = {
 
 	this.updateGrid();
 
-	if (A.grid.contentsOf(x, y) === 'queen') {
+	if (A.grid.contentsOf(x, y)) {
 	    this.removeQueen(x, y);
 	}
 	else {
@@ -82,7 +95,9 @@ Game.Play.prototype = {
     },
 
     addQueen: function (x, y) {
-	A.queens.push([x, y]);
+	if (A.queens.length < 8) {
+	    A.queens.push([x, y]);
+	}
 	return this;
     },
 
