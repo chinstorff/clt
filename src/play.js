@@ -11,7 +11,7 @@ Game.Play.prototype = {
     },
 
     update: function () {
-
+	this.paint();
     },
 
     paint: function () {
@@ -19,10 +19,18 @@ Game.Play.prototype = {
     },
 
     paintGrid: function () {
+	var value;
 	for (var j = 0; j < A.grid.rows; j++) {
 	    for (var i = 0; i < A.grid.columns; i++) {
-		
+		value = A.grid.contentsOf(i, j);
+		if (value) {
+		    game.add.sprite(this.gridToPixels(i), this.gridToPixels(j), value);
+		}
 	    }
 	}
+    },
+
+    gridToPixels: function (num) {
+	return 3 + 37 * num;
     },
 };

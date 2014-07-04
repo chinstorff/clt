@@ -6,6 +6,8 @@ Game.Load.prototype = {
 
 	// load everything
 	game.load.image('grid', 'assets/img/grid.png');
+	game.load.image('circle', 'assets/img/circle.png');
+	game.load.image('full', 'assets/img/full.png');
     },
 
     create: function () {
