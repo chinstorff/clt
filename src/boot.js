@@ -20,7 +20,8 @@ Game.Boot.prototype = {
 	game.load.image('queen', 'assets/img/circle.png');
 	game.load.image('filled', 'assets/img/full.png');
 
-	game.load.image('text-back', 'assets/img/text-back.png');
+	game.load.image('text-menu', 'assets/img/text-menu.png');
+	game.load.image('text-end', 'assets/img/text-end.png');
     },
 
     create: function () {
