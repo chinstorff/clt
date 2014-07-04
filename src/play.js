@@ -8,7 +8,7 @@ Game.Play.prototype = {
 	A.grid.addPossible('queen');
 	A.grid.addPossible('filled');
 
-	game.stage.backgroundColor = '#acf';
+	game.add.sprite(0, 0, 'background');
 	game.add.sprite(0, 0, 'grid');
 
 	A.pieces = game.add.group();
@@ -80,6 +80,10 @@ Game.Play.prototype = {
     click: function () {
 	var x = this.pixelsToGrid(game.input.mousePointer.x);
 	var y = this.pixelsToGrid(game.input.mousePointer.y);
+
+	if (x >= A.grid.columns || y >= A.grid.rows) {
+	    return;
+	}
 
 	this.updateGrid();
 
