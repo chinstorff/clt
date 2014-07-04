@@ -26,14 +26,12 @@ Grid.prototype = {
 	if (force) {
 	    this.addPossible(piece);
 	    this.grid[x][y] = piece;
-	    return this;
 	}
 
-	if (!this.possible[piece] || this.contentsOf(x, y)) {
-	    return false;
+	if (this.possible[piece] && !this.contentsOf(x, y)) {
+	    this.grid[x][y] = piece;
 	}
 
-	this.grid[x][y] = piece;
 	return this;
     },
 
@@ -47,11 +45,9 @@ Grid.prototype = {
 	if (piece) {
 	    if (this.addPiece(newX, newY, piece, force)) {
 		this.removePiece(oldX, oldY);
-		return this;
 	    }
-	    return false;
 	}
-	return false;
+	return this;
     },
 
     clear: function () {
@@ -61,10 +57,12 @@ Grid.prototype = {
 		this.grid[i][j] = '';
 	    }
 	}
+	return this;
     },
 
     addPossible: function (value) {
 	this.possible[value] = value;
+	return this;
     },
 
     toString: function (div) {
