@@ -13,6 +13,8 @@ Game.Play.prototype = {
 
 	A.pieces = game.add.group();
 
+	A.queens = [];
+
 	this.paint();
     },
 
