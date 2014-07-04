@@ -54,6 +54,15 @@ Grid.prototype = {
 	return false;
     },
 
+    clear: function () {
+	for (var i = 0; i < this.columns; i++) {
+	    this.grid[i] = [];
+	    for (var j = 0; j < this.rows; j++) {
+		this.grid[i][j] = '';
+	    }
+	}
+    },
+
     addPossible: function (value) {
 	this.possible[value] = value;
     },
