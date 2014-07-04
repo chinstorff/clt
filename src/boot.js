@@ -3,6 +3,8 @@ Game = {};
 A = {
     w: 300,
     h: 300,
+
+    queens: [],
 };
 
 Math.rand = function (max) {
