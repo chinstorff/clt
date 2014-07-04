@@ -45,6 +45,10 @@ Game.Play.prototype = {
 		}
 	    }
 	}
+
+	for (j = 0; j < (8 - A.queens.length); j++) {
+	    A.pieces.create(this.gridToPixels(8) + 1, this.gridToPixels(j) + 1, 'queen');
+	}
     },
 
     generateFilled: function (x, y) {
