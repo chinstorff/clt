@@ -12,8 +12,10 @@ Grid = function (columns, rows) {
 	for (var j = 0; j < this.rows; j++) {
 	    this.grid[i][j] = '';
 	}
-    }
+    };
+};
 
+Grid.prototype = {
     contentsOf: function (x, y) {
 	return this.grid[x][y];
     },
@@ -23,7 +25,7 @@ Grid = function (columns, rows) {
 
 	if (force) {
 	    this.possible[piece] = piece;
-	    this.grid[x, y] = piece;
+	    this.grid[x][y] = piece;
 	    return this;
 	}
 
@@ -31,12 +33,12 @@ Grid = function (columns, rows) {
 	    return false;
 	}
 
-	this.grid[x, y] = piece;
+	this.grid[x][y] = piece;
 	return this;
     },
 
     removePiece: function (x, y) {
-	this.grid[x, y] = '';
+	this.grid[x][y] = '';
 	return this;
     },
 
@@ -51,4 +53,20 @@ Grid = function (columns, rows) {
 	}
 	return false;
     },
+
+    toString: function (div) {
+	var ret = '';
+	div = div || ', ';
+
+	for (var j = 0; j < this.rows; j++) {
+	    for (var i = 0; i < this.columns; i++) {		
+		ret += this.contentsOf(i, j) + div;
+	    }
+	    ret += '\n';
+	}
+
+	return ret;
+    },
 };
+
+Grid.prototype.constructor = Grid;
