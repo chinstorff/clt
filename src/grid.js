@@ -24,7 +24,7 @@ Grid.prototype = {
 	force = force || false;
 
 	if (force) {
-	    this.possible[piece] = piece;
+	    this.addPossible(piece);
 	    this.grid[x][y] = piece;
 	    return this;
 	}
@@ -52,6 +52,10 @@ Grid.prototype = {
 	    return false;
 	}
 	return false;
+    },
+
+    addPossible: function (value) {
+	this.possible[value] = value;
     },
 
     toString: function (div) {
