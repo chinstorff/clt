@@ -83,8 +83,8 @@ Game.Play.prototype = {
     },
 
     click: function () {
-	var x = this.pixelsToGrid(game.input.mousePointer.x);
-	var y = this.pixelsToGrid(game.input.mousePointer.y);
+	var x = this.pixelsToGrid(game.input.x);
+	var y = this.pixelsToGrid(game.input.y);
 
 	if (x >= A.grid.columns) {
 	    A.queens = [];
