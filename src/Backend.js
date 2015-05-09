@@ -11,6 +11,11 @@
 //run([1,31,1,3,4,3,312,4,5,3,1,2,4,1,23,2,1,3,4,5,4,6,7,4,2,4,1,23,312,3,244,1], 10, 100);
 
 //Chris, u put stuffs here :)
+/*
+inputIntArray - the input array
+sizeOfSample - "n"
+numOfSamples - number of unique samples to take of size n from the inputArray
+*/
 function run(inputIntArray, sizeOfSample, numOfSamples)
 {
 	samplesChosen = chooseRandomSamples(inputIntArray.length, sizeOfSample, numOfSamples);
@@ -32,7 +37,7 @@ function run(inputIntArray, sizeOfSample, numOfSamples)
 		retval.push({indexes:sample, avg:avg}); //,values:values});
 		}
 	
-	console.log(retval);
+	//console.log(retval);
 	return retval;
 }
 
