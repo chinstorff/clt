@@ -8,20 +8,11 @@
 //NEW CODE:
 
 
-//run([1,31,1,3,4,3,312,4,5,3,1,2,4,1,23,2,1,3,4,5,4,6,7,4,2,4,1,23,312,3,244,1], 10, 100);
+run([1,31,1,3,4,3,312,4,5,3,1,2,4,1,23,2,1,3,4,5,4,6,7,4,2,4,1,23,312,3,244,1], 10, 100);
 
 //Chris, u put stuffs here :)
-/*
-inputIntArray - the input array
-sizeOfSample - "n"
-numOfSamples - number of unique samples to take of size n from the inputArray
-*/
 function run(inputIntArray, sizeOfSample, numOfSamples)
 {
-    if (!inputIntArray) {
-	return [];
-    }
-
 	samplesChosen = chooseRandomSamples(inputIntArray.length, sizeOfSample, numOfSamples);
 	
 	retval = [];
@@ -41,7 +32,7 @@ function run(inputIntArray, sizeOfSample, numOfSamples)
 		retval.push({indexes:sample, avg:avg}); //,values:values});
 		}
 	
-	//console.log(retval);
+	console.log(retval);
 	return retval;
 }
 
@@ -92,13 +83,8 @@ function chooseRandomSamples(n, m, numSamples)
 }
 function factorial(x)
 {
-if(!x) return 1;
+if(x == 0) return 1;
 return x*factorial(x-1);
-}
-
-function choose(n, m)
-{
-return factorial(n)/(factorial(m)*factorial(n-m));
 }
 
 //http://stackoverflow.com/questions/596467/how-do-i-convert-a-float-number-to-a-whole-number-in-javascript
@@ -251,5 +237,39 @@ function mixUp(p)
     }
   return false;
   }
+
+
+xSize = 25;//grid size
+function processInput(postdata)//postdata is input data from the button
+{
+	postdata = postdata.substring(postdata.indexOf("Content-Type: text/plain")+"Content-Type: text/plain".length +4);//+4 is for 2 enters
+	postdata = postdata.substring(0, postdata.indexOf("-")-2);//must do substring in 2 runs b/c "-" also appears in begining
+	postdata = postdata.replace( /\n/g, " " );//new line = space
+	entries = postdata.split(/[ ,]+/);//split by commas or spaces
+	entries = entries.map(Number);//convert strings to numbers
+	entries.sort();//sort min to max
+	
+	if(entries.length<2)return {"success":false, reason:"less than 2 data elements inputed"};
+	
+	min = entries[0];
+	max = entries[entries.length-1];
+	
+	range = max - min;
+	scale = range/xSize;
+	
+	returnValue = new Array(xSize);
+	
+	for(i = 0; i < entries.length; i++)
+		{
+		entry = entries[i];
+		closestX = truncate((entry-min)/scale);
+		returnValue[closestX] +=1;
+		}
+	
+	
+	return {xyVals: returnValue, entries:entries};
+	
+	
+}
 
 
