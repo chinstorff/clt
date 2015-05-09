@@ -112,7 +112,7 @@ Game.Play.prototype = {
 	return ret;
     },
 
-    endPlay: function (num) {
-	game.state.start('End');
+    reset: function (num) {
+	game.state.start('Play');
     },
 };
