@@ -1,10 +1,8 @@
 
 makeHistogram = function (a, sizeOfSample, numOfSamples) {
-    console.log("make histogram");
-
     a = a                       || Game.Play.prototype.generateDistribution();
-    sizeOfSample = sizeOfSample || 7;
-    numOfSamples = numOfSamples || 200
+    sizeOfSample = sizeOfSample || +document.getElementById("SoS").value;
+    numOfSamples = numOfSamples || +document.getElementById("NoS").value;
 
 
     a = run(a, sizeOfSample, numOfSamples);

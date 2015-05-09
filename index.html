@@ -16,25 +16,34 @@
     <script type="text/javascript" src="src/Controller.js"></script>
     <style type="text/css">
      body {
-       margin: 20px 0 0 0;
+       margin: 20px auto 0 auto;
        background-color: #f5f5f5;
+       width: 641px;
      }
 
      .big {
        display: table;
-       margin: 0px auto;
+       margin: 2px auto 0px auto;
      }
 
      #buttons {
        display: table;
        margin: 5px auto;
+       width: 641px;
+     }
+
+     input {
+       margin: 0 3px 0 0;
      }
     </style>
   </head>
   <body>
+    Draw population histogram below
     <div id="game" class="big"></div>
     <div id="buttons">
-      <button onclick="reset()">Reset</button>
+      <button onclick="reset()" style="margin-right: 23px">Reset Population</button>
+      Size of Sample:<input id="SoS" type="text" value="30" style="width: 20px"></input>
+      Number of Samples:<input id="NoS" type="text" value="1000" style="width: 50px"></input>
       <button onclick="makeHistogram()">Generate Sampling Distribution</button>
     </div>
     <div id="sd" class="big"></div>
