@@ -18,6 +18,10 @@ numOfSamples - number of unique samples to take of size n from the inputArray
 */
 function run(inputIntArray, sizeOfSample, numOfSamples)
 {
+    if (!inputIntArray) {
+	return [];
+    }
+
 	samplesChosen = chooseRandomSamples(inputIntArray.length, sizeOfSample, numOfSamples);
 	
 	retval = [];
@@ -88,8 +92,13 @@ function chooseRandomSamples(n, m, numSamples)
 }
 function factorial(x)
 {
-if(x == 0) return 1;
+if(!x) return 1;
 return x*factorial(x-1);
+}
+
+function choose(n, m)
+{
+return factorial(n)/(factorial(m)*factorial(n-m));
 }
 
 //http://stackoverflow.com/questions/596467/how-do-i-convert-a-float-number-to-a-whole-number-in-javascript
