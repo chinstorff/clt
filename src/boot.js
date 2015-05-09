@@ -1,8 +1,8 @@
 Game = {};
 
 A = {
-    w: 338,
-    h: 300,
+    w: 641,
+    h: 401,
 
     queens: [],
 };
@@ -17,7 +17,7 @@ Game.Boot.prototype = {
     preload: function () {
 	// load images for loading screen
 	game.load.image('grid', 'assets/img/grid.png');
-	game.load.image('queen', 'assets/img/circle.png');
+	game.load.image('queen', 'assets/img/full.png');
 	game.load.image('filled', 'assets/img/full.png');
 
 	game.load.image('text-menu', 'assets/img/text-menu.png');
@@ -25,7 +25,7 @@ Game.Boot.prototype = {
     },
 
     create: function () {
-	game.state.start('Menu');
+	game.state.start('Play');
     }
 };
 
