@@ -8,7 +8,7 @@
 //NEW CODE:
 
 
-run([1,31,1,3,4,3,312,4,5,3,1,2,4,1,23,2,1,3,4,5,4,6,7,4,2,4,1,23,312,3,244,1], 10, 100);
+//run([1,31,1,3,4,3,312,4,5,3,1,2,4,1,23,2,1,3,4,5,4,6,7,4,2,4,1,23,312,3,244,1], 10, 100);
 
 //Chris, u put stuffs here :)
 function run(inputIntArray, sizeOfSample, numOfSamples)
@@ -32,7 +32,7 @@ function run(inputIntArray, sizeOfSample, numOfSamples)
 		retval.push({indexes:sample, avg:avg}); //,values:values});
 		}
 	
-	console.log(retval);
+	//console.log(retval);
 	return retval;
 }
 
@@ -239,15 +239,28 @@ function mixUp(p)
   }
 
 
-xSize = 25;//grid size
+function sortNumber(a,b) {
+    return a - b;
+}
+console.log(processInput("Content-Type: text/plain\n\n123\n32\n99 3 1 21 , 321,3,21,5"));
+
 function processInput(postdata)//postdata is input data from the button
 {
-	postdata = postdata.substring(postdata.indexOf("Content-Type: text/plain")+"Content-Type: text/plain".length +4);//+4 is for 2 enters
-	postdata = postdata.substring(0, postdata.indexOf("-")-2);//must do substring in 2 runs b/c "-" also appears in begining
-	postdata = postdata.replace( /\n/g, " " );//new line = space
+	var xSize = 25;//grid size
+	postdata = postdata.substring(postdata.indexOf("Content-Type: text/plain")+"Content-Type: text/plain".length+2);//+2 is for 2 enters
+	//console.log(postdata);
+	endIndex = postdata.indexOf("-");
+	if(endIndex!=-1)//must do substring in 2 runs b/c "-" also appears in begining
+		postdata = postdata.substring(0, endIndex-2);
+	//console.log(postdata);
+	postdata = postdata.replace(/(\r\n|\n|\r)/gm," ")//new line = space
+	//console.log(postdata);
 	entries = postdata.split(/[ ,]+/);//split by commas or spaces
+	//console.log(entries);
 	entries = entries.map(Number);//convert strings to numbers
-	entries.sort();//sort min to max
+	//console.log(entries);
+	entries.sort(sortNumber);//sort min to max
+	//console.log(entries);
 	
 	if(entries.length<2)return {"success":false, reason:"less than 2 data elements inputed"};
 	
@@ -256,8 +269,13 @@ function processInput(postdata)//postdata is input data from the button
 	
 	range = max - min;
 	scale = range/xSize;
+	console.log(scale);
 	
-	returnValue = new Array(xSize);
+	returnValue = new Array(xSize+1);
+	for(i = 0; i < returnValue.length; i++)
+		{
+		returnValue[i]=0;
+		}
 	
 	for(i = 0; i < entries.length; i++)
 		{
@@ -265,6 +283,7 @@ function processInput(postdata)//postdata is input data from the button
 		closestX = truncate((entry-min)/scale);
 		returnValue[closestX] +=1;
 		}
+	
 	
 	
 	return {xyVals: returnValue, entries:entries};
