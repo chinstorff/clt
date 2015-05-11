@@ -11,10 +11,10 @@ function make2d (rawData) {
     return ret;
 }
 
-function drawChart(rawData) {
+function drawChart(rawData, NoS) {
     var data = google.visualization.arrayToDataTable(make2d(rawData), true);
     var options = {
-        title: 'Sampling Distribution',
+        title: 'Approximate Sampling Distribution with ' + NoS + ' Samples',
         legend: { position: 'none' },
 	width: 641,
 	height: 401,

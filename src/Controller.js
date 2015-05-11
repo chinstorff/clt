@@ -7,7 +7,7 @@ makeHistogram = function (a, sizeOfSample, numOfSamples) {
 
     a = run(a, sizeOfSample, numOfSamples);
 
-    drawChart(a);
+    drawChart(a, numOfSamples);
 }
 
 reset = function () {
