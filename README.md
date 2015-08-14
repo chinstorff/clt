@@ -1,7 +1,3 @@
 # clt
-
-Frontend -> Backend
-  - Population
-  
-Backend -> Frontend
-  - Sampling distribution
+## A central limit theorem visualization tool
+[try it out](http://chinstorff.com/clt)
